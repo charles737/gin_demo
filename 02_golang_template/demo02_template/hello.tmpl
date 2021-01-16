@@ -1,0 +1,65 @@
+{{/*1. 定义模版*/}}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>
+        Golang
+    </title>
+</head>
+<body>
+<p>
+<p>u1</p>
+    <h2 style="color: cornflowerblue">
+        name: {{ .u1.Name }}
+    </h2>
+    <h2>
+        age: {{ .u1.Age }}
+    </h2>
+    <h2>
+        gender: {{ .u1.Gender }}
+    </h2>
+<p>m1</p>
+    <h2 style="color: orange">
+        name: {{ .m1.name }}
+    </h2>
+    <h2>
+        age: {{ .m1.age }}
+    </h2>
+    <h2>
+        gender: {{ .m1.gender }}
+    </h2>
+</p>
+<hr>
+{{/*在模版中声明变量*/}}
+{{ $v1 := 100}}
+{{ $age := .m1.age }}
+
+{{/*条件判断*/}}
+{{if $v1}}
+{{$v1}}
+{{else}}
+Nothing!
+{{end}}
+<hr>
+{{if lt .m1.age 30}}
+上学
+{{else}}
+上班
+{{end}}
+<hr>
+{{range $idx, $hobby := .hobby}}
+    <p>{{$idx}} - {{$hobby}}</p>
+{{else}}
+    nothing!
+{{end}}
+<hr>
+{{/*with*/}}
+<p>m1</p>
+{{/* 该操作类似于：var . = .m1 */}}
+{{with .m1 }}
+<h2 style="color: orange">name: {{ .name }}</h2>
+<h2>age: {{ .age }}</h2>
+<h2>gender: {{ .gender }}</h2>
+{{end}}
+</body>
+</html>
